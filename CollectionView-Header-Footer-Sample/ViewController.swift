@@ -18,6 +18,9 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         numbers = (0 ..< cellCount).map { $0 }
         collectionView.dataSource = self
+        collectionView.register(UINib(nibName: String(describing: CustomHeaderView.self), bundle: .main),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: String(describing: CustomHeaderView.self))
     }
 
 }
@@ -34,5 +37,15 @@ extension ViewController: UICollectionViewDataSource {
             cell.setBackgroundColor(.lightGray)
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader,
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                             withReuseIdentifier: String(describing: CustomHeaderView.self),
+                                                                             for: indexPath) as? CustomHeaderView {
+            return headerView
+        }
+        return UICollectionReusableView()
     }
 }

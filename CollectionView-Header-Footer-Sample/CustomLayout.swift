@@ -15,12 +15,13 @@ class CustomLayout: UICollectionViewLayout {
     private let numberOfColumns = 3
     private let cellPadding = CGFloat(integerLiteral: 1)
     private var cachedAttributes = [UICollectionViewLayoutAttributes]()
-    private var contentHeight: CGFloat = 0
+    private var contentHeight = CGFloat.zero
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else { return 0 }
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
+    private let headerViewHeight = CGFloat(integerLiteral: 80)
 
     // MARK: - Life Cycle
 
@@ -51,6 +52,7 @@ class CustomLayout: UICollectionViewLayout {
         let cellXOffsets = (0 ..< numberOfColumns).map {
             CGFloat($0) * cellLength
         }
+        headerAttributes()
         gridAttributes(collectionView: collectionView, cellLength: cellLength, cellXOffsets: cellXOffsets)
     }
 
@@ -71,13 +73,29 @@ class CustomLayout: UICollectionViewLayout {
     private func gridAttributes(collectionView: UICollectionView, cellLength: CGFloat, cellXOffsets: [CGFloat]) {
         var cellYOffsets = [CGFloat](repeating: 0, count: numberOfColumns)
         var currentColumnNumber = 0
+        (0 ..< numberOfColumns).forEach { cellYOffsets[$0] = headerViewHeight }
         (0 ..< collectionView.numberOfItems(inSection: 0)).forEach {
             let indexPath = IndexPath(item: $0, section: 0)
-            let cellFrame = CGRect(x: cellXOffsets[currentColumnNumber], y: cellYOffsets[currentColumnNumber], width: cellLength, height: cellLength)
+            let cellFrame = CGRect(x: cellXOffsets[currentColumnNumber],
+                                   y: cellYOffsets[currentColumnNumber],
+                                   width: cellLength,
+                                   height: cellLength)
             cellYOffsets[currentColumnNumber] = cellYOffsets[currentColumnNumber] + cellLength
             currentColumnNumber = currentColumnNumber < (numberOfColumns - 1) ? currentColumnNumber + 1 : 0
             addAttributes(cellFrame: cellFrame, indexPath: indexPath)
         }
+    }
+
+    private func headerAttributes() {
+        guard let collectionView = collectionView else { return }
+        let indexPath = IndexPath(item: 0, section: 0)
+        let headerViewAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
+        headerViewAttribute.frame = CGRect(x: 0,
+                                           y: 0,
+                                           width: collectionView.bounds.size.width,
+                                           height: headerViewHeight)
+        cachedAttributes.append(headerViewAttribute)
+        contentHeight = max(contentHeight, headerViewAttribute.frame.maxY)
     }
 
 }
