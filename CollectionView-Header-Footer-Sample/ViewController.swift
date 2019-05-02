@@ -21,6 +21,9 @@ final class ViewController: UIViewController {
         collectionView.register(UINib(nibName: String(describing: CustomHeaderView.self), bundle: .main),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: String(describing: CustomHeaderView.self))
+        if let customLayout = collectionView.collectionViewLayout as? CustomLayout {
+            customLayout.delegate = self
+        }
     }
 
 }
@@ -47,5 +50,12 @@ extension ViewController: UICollectionViewDataSource {
             return headerView
         }
         return UICollectionReusableView()
+    }
+}
+
+extension ViewController: CustomLayoutDelegate {
+    func headerViewHeight(_ indexPath: IndexPath) -> CGFloat {
+        // section分けも可能
+        return view.frame.size.height * 0.1
     }
 }

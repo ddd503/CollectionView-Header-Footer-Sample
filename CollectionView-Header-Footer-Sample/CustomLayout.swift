@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol CustomLayoutDelegate: class {
+    func headerViewHeight(_ indexPath: IndexPath) -> CGFloat
+}
+
 class CustomLayout: UICollectionViewLayout {
 
     // MARK: - Propatis
 
+    weak var delegate: CustomLayoutDelegate?
     private let numberOfColumns = 3
     private let cellPadding = CGFloat(integerLiteral: 1)
     private var cachedAttributes = [UICollectionViewLayoutAttributes]()
@@ -21,7 +26,7 @@ class CustomLayout: UICollectionViewLayout {
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
-    private let headerViewHeight = CGFloat(integerLiteral: 80)
+    private var headerViewHeight = CGFloat.zero
 
     // MARK: - Life Cycle
 
@@ -90,6 +95,7 @@ class CustomLayout: UICollectionViewLayout {
         guard let collectionView = collectionView else { return }
         let indexPath = IndexPath(item: 0, section: 0)
         let headerViewAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
+        headerViewHeight = delegate?.headerViewHeight(indexPath) ?? 0
         headerViewAttribute.frame = CGRect(x: 0,
                                            y: 0,
                                            width: collectionView.bounds.size.width,
