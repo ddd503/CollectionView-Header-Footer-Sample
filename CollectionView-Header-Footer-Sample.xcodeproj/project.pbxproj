@@ -12,6 +12,8 @@
 		45D123AA227AA68400A6E16C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D123A8227AA68400A6E16C /* Main.storyboard */; };
 		45D123AC227AA68600A6E16C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D123AB227AA68600A6E16C /* Assets.xcassets */; };
 		45D123AF227AA68600A6E16C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D123AD227AA68600A6E16C /* LaunchScreen.storyboard */; };
+		45D123B7227AA9C200A6E16C /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D123B6227AA9C200A6E16C /* CustomLayout.swift */; };
+		45D123B9227AAED200A6E16C /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D123B8227AAED200A6E16C /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		45D123AB227AA68600A6E16C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45D123AE227AA68600A6E16C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45D123B0227AA68600A6E16C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45D123B6227AA9C200A6E16C /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		45D123B8227AAED200A6E16C /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				45D123AB227AA68600A6E16C /* Assets.xcassets */,
 				45D123AD227AA68600A6E16C /* LaunchScreen.storyboard */,
 				45D123B0227AA68600A6E16C /* Info.plist */,
+				45D123B6227AA9C200A6E16C /* CustomLayout.swift */,
+				45D123B8227AAED200A6E16C /* CustomCell.swift */,
 			);
 			path = "CollectionView-Header-Footer-Sample";
 			sourceTree = "<group>";
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D123B7227AA9C200A6E16C /* CustomLayout.swift in Sources */,
 				45D123A7227AA68400A6E16C /* ViewController.swift in Sources */,
+				45D123B9227AAED200A6E16C /* CustomCell.swift in Sources */,
 				45D123A5227AA68400A6E16C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
