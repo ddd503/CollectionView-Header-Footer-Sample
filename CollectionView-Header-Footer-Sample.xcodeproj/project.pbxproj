@@ -16,6 +16,8 @@
 		45D123B9227AAED200A6E16C /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D123B8227AAED200A6E16C /* CustomCell.swift */; };
 		45D123BC227AB93800A6E16C /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D123BA227AB93800A6E16C /* CustomHeaderView.swift */; };
 		45D123BD227AB93800A6E16C /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45D123BB227AB93800A6E16C /* CustomHeaderView.xib */; };
+		45D123C0227ADF0C00A6E16C /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D123BE227ADF0C00A6E16C /* CustomFooterView.swift */; };
+		45D123C1227ADF0C00A6E16C /* CustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45D123BF227ADF0C00A6E16C /* CustomFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		45D123B8227AAED200A6E16C /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		45D123BA227AB93800A6E16C /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		45D123BB227AB93800A6E16C /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		45D123BE227ADF0C00A6E16C /* CustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
+		45D123BF227ADF0C00A6E16C /* CustomFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				45D123B0227AA68600A6E16C /* Info.plist */,
 				45D123BA227AB93800A6E16C /* CustomHeaderView.swift */,
 				45D123BB227AB93800A6E16C /* CustomHeaderView.xib */,
+				45D123BE227ADF0C00A6E16C /* CustomFooterView.swift */,
+				45D123BF227ADF0C00A6E16C /* CustomFooterView.xib */,
 			);
 			path = "CollectionView-Header-Footer-Sample";
 			sourceTree = "<group>";
@@ -137,6 +143,7 @@
 				45D123BD227AB93800A6E16C /* CustomHeaderView.xib in Resources */,
 				45D123AF227AA68600A6E16C /* LaunchScreen.storyboard in Resources */,
 				45D123AC227AA68600A6E16C /* Assets.xcassets in Resources */,
+				45D123C1227ADF0C00A6E16C /* CustomFooterView.xib in Resources */,
 				45D123AA227AA68400A6E16C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D123C0227ADF0C00A6E16C /* CustomFooterView.swift in Sources */,
 				45D123BC227AB93800A6E16C /* CustomHeaderView.swift in Sources */,
 				45D123B7227AA9C200A6E16C /* CustomLayout.swift in Sources */,
 				45D123A7227AA68400A6E16C /* ViewController.swift in Sources */,

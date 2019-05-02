@@ -21,6 +21,9 @@ final class ViewController: UIViewController {
         collectionView.register(UINib(nibName: String(describing: CustomHeaderView.self), bundle: .main),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: String(describing: CustomHeaderView.self))
+        collectionView.register(UINib(nibName: String(describing: CustomFooterView.self), bundle: .main),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: String(describing: CustomFooterView.self))
         if let customLayout = collectionView.collectionViewLayout as? CustomLayout {
             customLayout.delegate = self
         }
@@ -43,18 +46,27 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader,
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                             withReuseIdentifier: String(describing: CustomHeaderView.self),
-                                                                             for: indexPath) as? CustomHeaderView {
-            return headerView
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                   withReuseIdentifier: String(describing: CustomHeaderView.self),
+                                                                   for: indexPath) as? CustomHeaderView ?? UICollectionReusableView()
+        case UICollectionView.elementKindSectionFooter:
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                   withReuseIdentifier: String(describing: CustomFooterView.self),
+                                                                   for: indexPath) as? CustomFooterView ?? UICollectionReusableView()
+        default:
+            return UICollectionReusableView()
         }
-        return UICollectionReusableView()
     }
 }
 
 extension ViewController: CustomLayoutDelegate {
     func headerViewHeight(_ indexPath: IndexPath) -> CGFloat {
+        // section分けも可能
+        return view.frame.size.height * 0.1
+    }
+    func footerViewHeight(_ indexPath: IndexPath) -> CGFloat {
         // section分けも可能
         return view.frame.size.height * 0.1
     }

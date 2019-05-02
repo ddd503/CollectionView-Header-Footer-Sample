@@ -10,6 +10,7 @@ import UIKit
 
 protocol CustomLayoutDelegate: class {
     func headerViewHeight(_ indexPath: IndexPath) -> CGFloat
+    func footerViewHeight(_ indexPath: IndexPath) -> CGFloat
 }
 
 class CustomLayout: UICollectionViewLayout {
@@ -27,6 +28,7 @@ class CustomLayout: UICollectionViewLayout {
         return collectionView.bounds.width - (insets.left + insets.right)
     }
     private var headerViewHeight = CGFloat.zero
+    private var footerViewHeight = CGFloat.zero
 
     // MARK: - Life Cycle
 
@@ -59,6 +61,7 @@ class CustomLayout: UICollectionViewLayout {
         }
         headerAttributes()
         gridAttributes(collectionView: collectionView, cellLength: cellLength, cellXOffsets: cellXOffsets)
+        footerAttributes()
     }
 
     private func resetAttributes() {
@@ -78,6 +81,7 @@ class CustomLayout: UICollectionViewLayout {
     private func gridAttributes(collectionView: UICollectionView, cellLength: CGFloat, cellXOffsets: [CGFloat]) {
         var cellYOffsets = [CGFloat](repeating: 0, count: numberOfColumns)
         var currentColumnNumber = 0
+        // header分のHeightを入力
         (0 ..< numberOfColumns).forEach { cellYOffsets[$0] = headerViewHeight }
         (0 ..< collectionView.numberOfItems(inSection: 0)).forEach {
             let indexPath = IndexPath(item: $0, section: 0)
@@ -102,6 +106,19 @@ class CustomLayout: UICollectionViewLayout {
                                            height: headerViewHeight)
         cachedAttributes.append(headerViewAttribute)
         contentHeight = max(contentHeight, headerViewAttribute.frame.maxY)
+    }
+
+    private func footerAttributes() {
+        guard let collectionView = collectionView else { return }
+        let indexPath = IndexPath(item: 0, section: 0)
+        let footerViewAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
+        footerViewHeight = delegate?.footerViewHeight(indexPath) ?? 0
+        footerViewAttribute.frame = CGRect(x: 0,
+                                           y: contentHeight,
+                                           width: collectionView.bounds.size.width,
+                                           height: footerViewHeight)
+        cachedAttributes.append(footerViewAttribute)
+        contentHeight = max(contentHeight, footerViewAttribute.frame.maxY)
     }
 
 }
